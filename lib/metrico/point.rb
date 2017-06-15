@@ -12,12 +12,10 @@ module Metrico
     # https://docs.influxdata.com/influxdb/v1.2/write_protocols/line_protocol_tutorial/
     # InfluxDB Line Protocol
     def to_s
-      message = [
+      [
         metric_name,
         metric_props
       ].join(',')
-      puts message
-      message
     end
 
     private def metric_name

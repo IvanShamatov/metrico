@@ -19,11 +19,19 @@ $ bundle install
 ```ruby
 # config/initializers/metrico.rb
 Metrico.configure do |config|
-  config.app_name = 'Compliance' # required
+  config.app_name = 'app_name' # required
   config.hostname = 'globalhost' # required
-  config.nodes = ['nats://telegraf-0.somenatsnode.com:4222'] # required
+  config.nats_connect_options = {
+    servers: ['nats://telegraf-0.somenatsnode.com:4222']
+  }
+  # define lambdas for these callbacks if you need some
+  config.on_error = ->{}
+  config.on_reconnect = ->{}
+  config.on_disconnect = ->{}
+  config.on_close = ->{}
 end
 ```
+For more nats connect options see [https://github.com/nats-io/pure-ruby-nats/blob/master/lib/nats/io/client.rb#L154](https://github.com/nats-io/pure-ruby-nats/blob/master/lib/nats/io/client.rb#L154). You also can define most of all connection config via ENV variables.
 
 ## Usage
 In your app you have to push metrics, passing name, hash of metric/value and hash of tags.

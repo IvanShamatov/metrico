@@ -18,9 +18,13 @@ module Metrico
       @client ||= Client.new
     end
 
+    def enabled?
+      self.config && self.config.enabled
+    end
+
     def push(name, fields, tags = {})
       point = Point.new(name, fields, tags)
-      client.push(point)
+      client.push(point) if enabled?
     end
   end
 end

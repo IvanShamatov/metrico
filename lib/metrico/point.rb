@@ -35,7 +35,7 @@ module Metrico
     end
 
     private def comma_equal_flatten(hash)
-      hash.map { |k,v| [k,v].join('=') }.join(',')
+      hash.map { |k, v| [k, v].join('=') }.join(',')
     end
   end
 end

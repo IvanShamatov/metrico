@@ -24,8 +24,8 @@ module Metrico
 
     private def metric_props
       [
-        comma_equal_flatten(tags),
-        comma_equal_flatten(fields),
+        comma_equal_flatten_tags(tags),
+        comma_equal_flatten_fields(fields),
         timestamp
       ].join(' ')
     end
@@ -34,7 +34,11 @@ module Metrico
       (Time.now.to_f * 1_000_000_000).to_i
     end
 
-    private def comma_equal_flatten(hash)
+    private def comma_equal_flatten_tags(hash)
+      hash.map { |k, v| [k, v].join('=') }.join(',')
+    end
+
+    private def comma_equal_flatten_fields(hash)
       hash.map { |k, v| [k, v.inspect].join('=') }.join(',')
     end
   end

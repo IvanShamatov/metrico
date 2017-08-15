@@ -35,11 +35,15 @@ module Metrico
     end
 
     private def comma_equal_flatten_tags(hash)
-      hash.map { |k, v| [k, v].join('=') }.join(',')
+      compact(hash).map { |k, v| [k, v].join('=') }.join(',')
     end
 
     private def comma_equal_flatten_fields(hash)
-      hash.map { |k, v| [k, v.inspect].join('=') }.join(',')
+      compact(hash).map { |k, v| [k, v.inspect].join('=') }.join(',')
+    end
+
+    private def compact(hash)
+      hash.reject { |_, value| value.nil? }
     end
   end
 end

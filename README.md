@@ -1,5 +1,4 @@
-# Metrico [early MVP] [specs required]
-
+# Metrico
 > NATS ruby client to write metrics
 > Use it to push in InfluxDB format through NATS
 > `https://docs.influxdata.com/influxdb/v1.2/write_protocols/line_protocol_tutorial/`
